@@ -34,12 +34,7 @@ while True:
             print("Invalid input. Please enter a number.")
             continue
 
-        if choice == '1':
-            print(num1, "+", num2, "=", add(num1, num2))
-
-        elif choice == '2':
-            print(num1, "-", num2, "=", subtract(num1, num2))
-
+      
         elif choice == '3':
             print(num1, "*", num2, "=", multiply(num1, num2))
 
@@ -49,7 +44,7 @@ while True:
         # check if user wants another calculation
         # break the while loop if answer is no
         next_calculation = input("Let's do next calculation? (yes/no): ")
-        print("My dog cooper is a german shepherd");
+      
         if next_calculation == "no":
           break
     else:
