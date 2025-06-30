@@ -1,55 +1,39 @@
-# This function adds two numbers
-def add(x, y):
-    return x + y
+# Python 3 program for recursive binary search.
+# Modifications needed for the older Python 2 are found in comments.
 
-# This function subtracts two numbers
-def subtract(x, y):
-    return x - y
+# Returns index of x in arr if present, else -1
+def binary_search(arr, low, high, x):
 
-# This function multiplies two numbers
-def multiply(x, y):
-    return x * y
+    # Check base case
+    if high >= low:
 
-# This function divides two numbers
-def divide(x, y):
-    return x / y
+        mid = (high + low) // 2
 
+        # If element is present at the middle itself
+        if arr[mid] == x:
+            return mid
 
-print("Select operation.")
-print("1.Add")
-print("2.Subtract")
-print("3.Multiply")
-print("4.Divide")
+        # If element is smaller than mid, then it can only
+        # be present in left subarray
+        elif arr[mid] > x:
+            return binary_search(arr, low, mid - 1, x)
 
-while True:
-    # take input from the user
-    choice = input("Enter choice(1/2/3/4): ")
+        # Else the element can only be present in right subarray
+        else:
+            return binary_search(arr, mid + 1, high, x)
 
-    # check if choice is one of the four options
-    if choice in ('1', '2', '3', '4'):
-        try:
-            num1 = float(input("Enter first number: "))
-            num2 = float(input("Enter second number: "))
-        except ValueError:
-            print("Invalid input. Please enter a number.")
-            continue
-
-        if choice == '1':
-            print(num1, "+", num2, "=", add(num1, num2))
-
-        elif choice == '2':
-            print(num1, "-", num2, "=", subtract(num1, num2))
-
-        elif choice == '3':
-            print(num1, "*", num2, "=", multiply(num1, num2))
-
-        elif choice == '4':
-            print(num1, "/", num2, "=", divide(num1, num2))
-        
-        # check if user wants another calculation
-        # break the while loop if answer is no
-        next_calculation = input("Let's do next calculation? (yes/no): ")
-        if next_calculation == "no":
-          break
     else:
-        print("Invalid Input")
+        # Element is not present in the array
+        return -1
+
+# Test array
+arr = [ 2, 3, 4, 10, 40 ]
+x = 10
+
+# Function call
+result = binary_search(arr, 0, len(arr)-1, x)
+
+if result != -1:
+    print("Element is present at index", str(result))
+else:
+    print("Element is not present in array")
